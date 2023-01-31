@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/updatemyphoto" method="put" enctype="multipart/form-data" id="form">
+        <label for="file"> enter new file</label>
+        <!-- <input type="text" id="name"> -->
+        <input type="file" name="photo" id="file">
+        <input type="submit">
+    </form>
+    <script>
+        let form = document.querySelector("#form");
+        let file = document.querySelector("#file");
+        let name = document.querySelector("#name");
+
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault()
+            const formdata = new FormData();
+            formdata.append("photo", file.files[0])
+
+
+            fetch("/api/updatemyphoto", { method: "put", body: formdata })
+
+
+
+            // fetch("/api/updatemyname", { method: "put", body: JSON.stringify({ name: name.value }),credentials:"include", headers: {
+            //         'Content-Type': 'application/json',
+            //     }, })
+        })
+
+    </script>
+</body>
+
+</html>
